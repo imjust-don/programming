@@ -64,6 +64,7 @@ print()
 print(f'The average life expactancy for all countries is {average}')
 print(f'The max life expectancy was in {place2} with {biggest2}')
 print(f'The min life expectancy was in {small_place2} with {small2}')
+print()
 # max = max(exactancy)
 # min = min(exactancy)
 
