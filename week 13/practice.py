@@ -34,7 +34,7 @@ is_raining = ask_yes_or_no('Is it going to rain?', 'you bet')
 if is_raining:
     print('Don\'t go running')
 else:
-    is_snowing = ask_yes_or_no('Is is snowing?', nagative='nada')
+    is_snowing = ask_yes_or_no('Is is snowing?', negative='nada')
     if is_snowing:
         print('Dont\'t go running')
     else:
