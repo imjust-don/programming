@@ -2,6 +2,7 @@ import random
 
 def main():
     x = 1
+    print()
     while x <= 6:
         if x == 1:
             make_sentence(1, "past")
@@ -15,7 +16,8 @@ def main():
             make_sentence(2, "present")
         if x == 6:
             make_sentence(2, "future")
-
+        x += 1
+    print()
 
 def make_sentence(quantity, tense):
     determiner = get_determiner(quantity)
