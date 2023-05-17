@@ -1,3 +1,5 @@
+# Import the csv module so that it can be used
+# to read from the accidents.csv file.
 import csv
 
 
@@ -18,11 +20,11 @@ def main():
     try:
         # Prompt the user for a filename and open that text file.
         filename = input("Name of file that contains NHTSA data: ")
-        with open(filename, "rt") as infile:
+        with open(filename, "rt") as text_file:
 
-            # Get a percentage from the user.
-            perc_reduc = get_float("Percent reduction of texting"
-                " while driving [0, 100]: ", 0, 100)
+            # Prompt the user for a percentage.
+            perc_reduc = float(input(
+                "Percent reduction of texting while driving [0, 100]: "))
 
             print()
             print(f"With a {perc_reduc}% reduction in using a cell",
@@ -34,11 +36,11 @@ def main():
 
             # Use the csv module to create a reader
             # object that will read from the opened file.
-            reader = csv.reader(infile)
+            reader = csv.reader(text_file)
 
-            # The first line of the CSV file contains column
-            # headings and not a student's I-Number and name, so
-            # this statement skips the first line of the CSV file.
+            # The first line of the CSV file contains column headings
+            # and not a student's I-Number and name, so this statement
+            # skips the first line of the CSV file.
             next(reader)
 
             # Process each row in the CSV file.
@@ -52,51 +54,14 @@ def main():
                 # Print the estimated reductions
                 # in injuries and fatalities.
                 print(year, injur, fatal, sep=", ")
-
     except (FileNotFoundError, PermissionError) as error:
         print(error)
-        print("Please choose a different file.")
-
+        print("Please choose a different file")
     except ValueError as val_err:
-        print("Error:", val_err)
-
+        print("Error", val_err)
     except (csv.Error, KeyError) as error:
-        print(f"Error: line {reader.line_num} of {infile.name}"
-                " is formatted incorrectly.")
+        print(f"Error: line {reader.line_num}")
 
-    except ZeroDivisionError as zero_div_err:
-        print(f"Error: line {reader.line_num} of {infile.name}"
-                " contains 0 in the 'Fatal Crashes' or"
-                "'Cell Phone Use' column.")
-
-
-def get_float(prompt, lower_bound, upper_bound):
-    """Prompt the user for a number and return the number as a float.
-
-    Parameters
-        prompt: A string to display to the user.
-        lower_bound: The lowest (smallest) number
-            that the user may enter.
-        upper_bound: The highest (largest) number
-            that the user may enter.
-    Return: The number that the user entered.
-    """
-    number = None
-    while number == None:
-        try:
-            number = float(input(prompt))
-            if number < lower_bound:
-                print(f"Error: {number} is too low." \
-                        f" Please enter a different number.")
-                number = None
-            elif number > upper_bound:
-                print(f"Error: {number} is too high." \
-                        f" Please enter a different number.")
-                number = None
-        except ValueError as val_err:
-            print("Error:", val_err)
-    print()
-    return number
 
 
 def estimate_reduction(row, behavior_key, perc_reduc):
@@ -105,8 +70,8 @@ def estimate_reduction(row, behavior_key, perc_reduc):
     had reduced a dangerous behavior by a given percentage.
 
     Parameters
-        row: a CSV row of data from the U.S. National Highway
-            Traffic Safety Administration (NHTSA)
+        row: a CSV row of data from the U.S. National Highway Traffic
+            Safety Administration (NHTSA)
         behavior_key: heading from the CSV file for the dangerous
             behavior that drivers could reduce
         perc_reduc: percent that drivers could reduce a dangerous
@@ -127,7 +92,7 @@ def estimate_reduction(row, behavior_key, perc_reduc):
 
 
 # If this file was executed like this:
-# > python teach_solution.py
+# > python accidents.py
 # then call the main function. However, if this file
 # was simply imported, then skip the call to main.
 if __name__ == "__main__":
