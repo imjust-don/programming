@@ -2,9 +2,9 @@ import csv
 
 
 def main():
-    I_NUMBER_INDEX = 0
+    Id_index = 0
     NAME_INDEX = 1
-    students_dict = read_dictionary("students.csv", I_NUMBER_INDEX)
+    students_dict = read_dictionary("students.csv", Id_index)
 
     inumber = input("Please enter an I-Number (xx-xxx-xxxx): ")
 
