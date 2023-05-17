@@ -2,7 +2,7 @@
 
 def main():
     count = 0
-    provinces = read_file("week 6\provinces.txt")
+    provinces = read_file("provinces.txt")
     print(provinces)
 
     for item in provinces:
